@@ -8,3 +8,16 @@
 </html>
 
 
+
+
+
+<script type="text/javascript">
+	
+	var floodMaps;
+
+	$.get("<?php echo base_url();?>index.php/home/getFloodmaps", function(data){
+		floodMaps = data;
+		floodMaps = $.parseJSON(floodMaps);
+	})
+
+</script>

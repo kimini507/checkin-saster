@@ -23,6 +23,11 @@ class Home extends CI_Controller {
 		$this->load->view('index');
 		$this->load->view('includes/footer');
 	}
+
+	public function getFloodMaps(){
+		$content = file_get_contents('http://202.90.153.89/api/flood_maps');
+		echo $content;
+	}
 }
 
 /* End of file welcome.php */
