@@ -1,13 +1,5 @@
 var map; var SDLLayer; var SDLLayer2;     
 
-window.onload = getData;
-
-
-function getData(){
-  var content = document.getElementById('hidden_values').innerHTML;
-  console.log(content);
-};
-
 function initialize() {
     var center_pt = new google.maps.LatLng(12.080529,121.7679702);    
     var mapOptions = {
