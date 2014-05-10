@@ -1,0 +1,27 @@
+#map_canvas{
+	position: absolute;
+	height:100%;
+	width:100%;
+	top: 0px;
+	z-index: 0;
+}
+
+#navbar_top {
+	background: rgba(200, 20,20,1);
+	z-index: 1;
+}
+
+#navbar_top *{
+	color: white !important;
+}
+
+
+#navbar_top *:hover, #navbar_top .active a{
+	color: black !important;
+}
+
+#navbar_top li:hover{
+	background: #E7E7E7;
+
+}
+
