@@ -1,11 +1,10 @@
-var map; var SDLLayer; var SDLLayer2;     
+var map; var SDLLayer;
 
 window.onload = getData;
 
-
 function getData(){
   var content = document.getElementById('hidden_values').innerHTML;
-  console.log(content);
+  console.log($.parseJSON(content));
 };
 
 function initialize() {
@@ -57,47 +56,6 @@ function AddWMSLayer()
     });   
     map.overlayMapTypes.push(SDLLayer);
 
-    SDLLayer2 = new google.maps.ImageMapType({
-        getTileUrl: function (coord, zoom) {
-            var proj = map.getProjection();
-            var zfactor = Math.pow(2, zoom);
-
-        //     // get Long Lat coordinates
-
-             var top = proj.fromPointToLatLng(new google.maps.Point(coord.x * 256 / zfactor, coord.y * 256 / zfactor));
-             var bot = proj.fromPointToLatLng(new google.maps.Point((coord.x + 1) * 256 / zfactor, (coord.y + 1) * 256 / zfactor));
-
-        //     //corrections for the slight shift of the SLP (mapserver)
-             var deltaX = 0.0013;
-             var deltaY = 0.00058;
-
-             //create the Bounding box string
-             var bbox = (top.lng() + deltaX) + "," +
-                                  (bot.lat() + deltaY) + "," +
-                                  (bot.lng() + deltaX) + "," +
-                                  (top.lat() + deltaY);             
-
-
-            //http://localhost:808/cgi-bin/mapserv.exe?MAP=C:/Users/lepton/Desktop/My Docs/Development/GIS Testing/Delhi_State_Locality.map&LAYERS=ALL&MODE=MAP
-            console.log(bbox);
-
-            var url = "http://202.90.153.87:8080/geoserver/wms?service=WMS&version=1.1.1&request=GetMap&layers=noah:Quezon_LucenaCity_Flood_5year&styles=point&srs=epsg:4326&bbox=" + bbox + "&width=256&height=256&format=image/png&transparent=true";
-
-            return url;                 // return URL for the tile
-        },               
-
-        tileSize: new google.maps.Size(256, 256),
-        opacity: 1, // setting image TRANSPARENCY 
-        isPng: true
-    });  
-
-    var customParams = [
-"FORMAT=image/png8",
-"LAYERS=ALA:ibra7_regions"
-];
-
-    //add WMS layer
-    map.overlayMapTypes.push(SDLLayer2);
 }
 
 
