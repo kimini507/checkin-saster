@@ -1,3 +1,8 @@
+<?php
+
+  require ("/system/libraries/globelabs/GlobeApi.php");
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,7 +30,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       	<li><a href="#" onclick="AddWMSLayer();">Add WMS Layer</a></li>
-	    <li><a href="#" onclick="RemoveLayer();">Remove Layer</a></li>
+	      <li><a href="#" onclick="RemoveLayer();">Remove Layer</a></li>
+        <li><a href="#login_modal" data-toggle="modal">Login</a></li>
+        <li><a href="#signup_modal" data-toggle="modal">Register</a></li>
       </ul>
 
       <div class="navbar-left">
@@ -47,3 +54,53 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="" class="form-horizontal">
+
+                <input class="form-control" type="text" placeholder="Username"/><br/>
+                <input class="form-control" type="password" placeholder="Password"/><br/>
+                <input type="submit" class="btn btn-primary"/>
+
+              </form>
+            </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h4 class="modal-title" id="myModalLabel">Register</h4>
+            </div>
+            <div class="modal-body">
+            
+              <form method="POST" action="" class="form-horizontal">
+
+                <input class="form-control" type="text" placeholder="Name"><br/>
+                <input class="form-control" type="text" placeholder="Username"><br/>
+                <input class="form-control" type="password" placeholder="Password"/><br/>
+                <input class="form-control" type="password" placeholder="Re-enter Password"/><br/>
+                <input type="hidden"/>
+                <input type="hidden"/>
+                <input type="submit"/>
+
+              </form>
+
+            </div>
+    </div>
+  </div>
+
+</div>
