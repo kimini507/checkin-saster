@@ -31,8 +31,26 @@
       <ul class="nav navbar-nav">
       	<li><a href="#" onclick="AddWMSLayer();">Add WMS Layer</a></li>
 	      <li><a href="#" onclick="RemoveLayer();">Remove Layer</a></li>
-        <li><a href="#login_modal" data-toggle="modal">Login</a></li>
-        <li><a href="#signup_modal" data-toggle="modal">Register</a></li>
+         <li><a href="#" onclick="showRain();">Susceptible to Rain</a></li>
+        <li><a href="#" onclick="removeMarker();">Remove</a></li>
+        <?php
+          if(!$this->session->userdata('username')) {
+              ?>
+              <li><a href="#login_modal" data-toggle="modal">Login</a></li>
+              <li><a href="#signup_modal" data-toggle="modal">Register</a></li>
+          <?php
+          }
+          else {
+              
+
+                echo "<li><a href='http://developer.globelabs.com.ph/dialog/oauth?app_id=opBdatgpa8RfA7czERia6EfaEBrot7ka'>Register your Cellphone number</a></li>";
+
+              
+         ?>
+              <li><a href="<?php echo base_url()?>index.php/home/performLogout" data-toggle="modal">Logout</a></li>
+          <?php
+          }
+          ?>
       </ul>
 
       <div class="navbar-left">
@@ -60,20 +78,20 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h4 class="modal-title" id="myModalLabel">Login</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title" id="myModalLabel">Login</h4>
             </div>
             <div class="modal-body">
-              <form method="POST" action="" class="form-horizontal">
+                <form method="POST" action="index.php/home/performLogin" class="form-horizontal">
 
-                <input class="form-control" type="text" placeholder="Username" name="username"/><br/>
-                <input class="form-control" type="password" placeholder="Password" name="password"/><br/>
-                <input type="submit" class="btn btn-primary"/>
+                    <input class="form-control" type="text" placeholder="Username" name="username"/><br/>
+                    <input class="form-control" type="password" placeholder="Password" name="password"/><br/>
+                    <input type="submit" class="btn btn-primary"/>
 
-              </form>
+                </form>
             </div>
+        </div>
     </div>
-  </div>
 
 </div>
 
@@ -82,25 +100,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h4 class="modal-title" id="myModalLabel">Register</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title" id="myModalLabel">Register</h4>
             </div>
             <div class="modal-body">
-            
-              <form method="POST" action="" class="form-horizontal">
 
-                <input class="form-control" type="text" placeholder="Name" name="name"><br/>
-                <input class="form-control" type="text" placeholder="Username" name="username"><br/>
-                <input class="form-control" type="password" placeholder="Password" name="pw"/><br/>
-                <input class="form-control" type="password" placeholder="Re-enter Password" name="pw2"/><br/>
-                <input class="form-control" type="text" id="longitude" name="longitude"/>
-                <input class="form-control" type="text" id="latitude" name="latitude"/>
-                <input type="submit"/>
+                <form method="POST" action="index.php/home/performRegister" class="form-horizontal">
 
-              </form>
+                    <input class="form-control" type="text" placeholder="Name" name="name"><br/>
+                    <input class="form-control" type="text" placeholder="Username" name="username"><br/>
+                    <input class="form-control" type="password" placeholder="Password" name="pw"/><br/>
+                    <input class="form-control" type="password" placeholder="Re-enter Password" name="pw2"/><br/>
+                    <input class="form-control" type="text" id="longitude" name="longitude"/>
+                    <input class="form-control" type="text" id="latitude" name="latitude"/>
+                    <input type="submit"/>
+
+                </form>
 
             </div>
+        </div>
     </div>
-  </div>
 
 </div>

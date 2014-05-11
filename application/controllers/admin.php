@@ -19,14 +19,43 @@ class Admin extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('includes/header');
+		$this->load->view('includes/adminheader');
 		$this->load->view('index');
-		$this->load->view('includes/footer');
+		$this->load->view('includes/adminfooter');
 	}
 
 	public function getFloodMaps(){
 		$content = file_get_contents('http://202.90.153.89/api/flood_maps');
 		echo $content;
+	}
+
+	public function sendSMS(){
+
+		$rad = $_POST['rad'];
+		$msg = $_POST['text'];
+		$lng = $_POST['lng'];
+		$lat = $_POST['lat'];
+
+		$top = $rad + $lat;
+		$btm = $lat - $rad;
+		$left = $lng - $rad;
+		$right = $lng + $rad;
+
+		$this->load->database();
+		$code = $this->db->query("SELECT code FROM user WHERE longitude>$left AND longitude<$right AND latitude>$btm AND latitude<$btm")->result();
+
+		foreach ($code as $key) {
+			
+			$response = $auth->getAccessToken($key);
+
+			$sms = $globe->sms( 4958 );
+			$response = $sms->sendMessage($response['access_token'], $response['subscriber_number'], $msg);
+
+
+		}
+
+		$this->index();
+
 	}
 }
 

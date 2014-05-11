@@ -19,9 +19,9 @@ class User_Follower extends CI_Model {
         return $query;
     }
 
-    function createUser($user_name,$password,$code,$name,$longitude,$latitude){
+    function createUser($user_name,$password,$name,$longitude,$latitude){
         $this->load->database();
-        $query = $this->db->query("INSERT INTO USER VALUES({$user_name},{$password},{$code},{$name},{$longitude},{$latitude})");
+        $query = $this->db->query("INSERT INTO USER(username,password,name,longitude,latitude) VALUES('{$user_name}','{$password}','{$name}',{$longitude},{$latitude})");
         return $query;
     }
 
@@ -29,5 +29,14 @@ class User_Follower extends CI_Model {
         $this->load->database();
         $query = $this->db->query("SELECT * from follows f inner join user on f.username = {$user_name}");
         return $query;
+    }
+
+    function getUser($username,$password){
+        $this->load->database();
+        $query = $this->db->query("SELECT * from user where username='{$username}' AND password='{$password}'");
+        if($query->num_rows() > 0){
+            return $query;
+        }
+        return null;
     }
 } 

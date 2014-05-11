@@ -31,8 +31,6 @@
       <ul class="nav navbar-nav">
       	<li><a href="#" onclick="AddWMSLayer();">Add WMS Layer</a></li>
 	      <li><a href="#" onclick="RemoveLayer();">Remove Layer</a></li>
-        <li><a href="#login_modal" data-toggle="modal">Login</a></li>
-        <li><a href="#signup_modal" data-toggle="modal">Register</a></li>
       </ul>
 
       <div class="navbar-left">
@@ -55,52 +53,29 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h4 class="modal-title" id="myModalLabel">Login</h4>
-            </div>
-            <div class="modal-body">
-              <form method="POST" action="" class="form-horizontal">
-
-                <input class="form-control" type="text" placeholder="Username"/><br/>
-                <input class="form-control" type="password" placeholder="Password"/><br/>
-                <input type="submit" class="btn btn-primary"/>
-
-              </form>
-            </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h4 class="modal-title" id="myModalLabel">Register</h4>
-            </div>
-            <div class="modal-body">
-            
-              <form method="POST" action="" class="form-horizontal">
-
-                <input class="form-control" type="text" placeholder="Name" name="name"><br/>
-                <input class="form-control" type="text" placeholder="Username" name="username"><br/>
-                <input class="form-control" type="password" placeholder="Password" name="pw"/><br/>
-                <input class="form-control" type="password" placeholder="Re-enter Password" name="pw2"/><br/>
-                <input class="form-control" type="text" id="longitude" name="longitude"/>
-                <input class="form-control" type="text" id="latitude" name="latitude"/>
-                <input type="submit"/>
-
-              </form>
-
-            </div>
-    </div>
-  </div>
-
-</div>
+<div class="modal fade" id="alert-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">ALERT</h4>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr valign="top">
+            <td><label> Radius(degrees): </label></td>
+            <td><input id="alert-rad" type="number" value="10"/></td><br/>
+          </tr>
+          <tr valign="top">
+            <td><label> Message: </label></td>
+            <td><textarea id="alert-alert" placeholder="Input alert here..."> </textarea></td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="" id="alert-submit" type="button" class="btn btn-danger">ALERT</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
