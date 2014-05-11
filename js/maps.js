@@ -9,6 +9,24 @@ function initialize() {
 
   map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);       
   map.setMapTypeId(google.maps.MapTypeId.ROADMAP);         
+
+
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: pos,
+        content: 'Location found using HTML5.'
+      });
+
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  }
 }
 
 function AddWMSLayer(){
@@ -50,8 +68,11 @@ function AddWMSLayer(){
 
 
 function RemoveLayer(){
-  if(SDLLayer){          
-      map.overlayMapTypes.removeAt(0);           
+  if(SDLLayer){
+    var count = 0
+    map.overlayMapTypes.forEach(function(remove){
+      map.overlayMapTypes.removeAt(count++);  
+    });
   }
 }
 
