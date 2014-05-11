@@ -13,9 +13,21 @@ class User_Follower extends CI_Model {
         parent::__construct();
     }
 
-    function getCode($user_id){
+    function getCode($user_name){
         $this->load->database();
-        $query = $this->db->query("SELECT code from user where user_id= {$user_id}");
+        $query = $this->db->query("SELECT code from user where user_name= {$user_name}");
+        return $query;
+    }
+
+    function createUser($user_name,$password,$code,$name,$longitude,$latitude){
+        $this->load->database();
+        $query = $this->db->query("INSERT INTO USER VALUES({$user_name},{$password},{$code},{$name},{$longitude},{$latitude})");
+        return $query;
+    }
+
+    function getFollower($user_name){
+        $this->load->database();
+        $query = $this->db->query("SELECT * from follows f inner join user on f.username = {$user_name}");
         return $query;
     }
 } 
