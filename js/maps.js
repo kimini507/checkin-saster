@@ -16,11 +16,10 @@ function initialize() {
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
 
-      var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'Location found using HTML5.'
-      });
+      var elem = document.getElementById("longitude");
+      elem.value = position.coords.longitude;
+      elem = document.getElementById("latitude");
+      elem.value = position.coords.latitude;
 
       map.setCenter(pos);
     }, function() {
@@ -28,6 +27,17 @@ function initialize() {
     });
   }
 }
+
+ function handleNoGeolocation(errorFlag) {
+    if (errorFlag == true) {
+      alert("Geolocation service failed.");
+      initialLocation = newyork;
+    } else {
+      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+      initialLocation = siberia;
+    }
+    map.setCenter(initialLocation);
+  }
 
 function AddWMSLayer(){
   floodMaps.forEach(function(entry){
