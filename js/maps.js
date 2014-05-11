@@ -9,9 +9,37 @@ function initialize() {
 
   map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);       
   map.setMapTypeId(google.maps.MapTypeId.ROADMAP);         
+
+
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var elem = document.getElementById("longitude");
+      elem.value = position.coords.longitude;
+      elem = document.getElementById("latitude");
+      elem.value = position.coords.latitude;
+
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  }
 }
 
 
+ function handleNoGeolocation(errorFlag) {
+    if (errorFlag == true) {
+      alert("Geolocation service failed.");
+      initialLocation = newyork;
+    } else {
+      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+      initialLocation = siberia;
+    }
+    map.setCenter(initialLocation);
+  }
+  
 function AddWMSLayer(){
   floodMaps.forEach(function(entry){
     entry.flood.forEach(function(flood){
@@ -51,8 +79,11 @@ function AddWMSLayer(){
 
 
 function RemoveLayer(){
-  if(SDLLayer){          
-      map.overlayMapTypes.removeAt(0);           
+  if(SDLLayer){
+    var count = 0
+    map.overlayMapTypes.forEach(function(remove){
+      map.overlayMapTypes.removeAt(count++);  
+    });
   }
 }
 

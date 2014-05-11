@@ -23,7 +23,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" id="showLeftPush" href="#">>Ready<</a>
+      <a class="navbar-brand" id="showLeftPush" href="#">Brand</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,8 +66,8 @@
             <div class="modal-body">
               <form method="POST" action="" class="form-horizontal">
 
-                <input class="form-control" type="text" placeholder="Username" name="username"/><br/>
-                <input class="form-control" type="password" placeholder="Password" name="password"/><br/>
+                <input class="form-control" type="text" placeholder="Username"/><br/>
+                <input class="form-control" type="password" placeholder="Password"/><br/>
                 <input type="submit" class="btn btn-primary"/>
 
               </form>
