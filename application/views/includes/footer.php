@@ -20,4 +20,13 @@
 		floodMaps = $.parseJSON(floodMaps);
 	})
 
+	$(".map_blocks").on("mouseenter", function(){
+		$(this).addClass("hovered");
+	})
+
+	$(".map_blocks").on("mouseleave	", function(){
+		$(this).removeClass("hovered");
+	})
+
+
 </script>
