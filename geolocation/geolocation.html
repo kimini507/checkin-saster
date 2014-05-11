@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/geolocation.css" rel="stylesheet">
+    <!--
+    Include the maps javascript with sensor=true because this code is using a
+    sensor (a GPS locator) to determine the user's location.
+    See: https://developers.google.com/apis/maps/documentation/javascript/basics#SpecifyingSensor
+    -->
+    <script src="js\jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+
+    <script src="js\geolocation.js"></script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+    <div id="marker-adder-container">
+    	<div>
+    	- Fill up info<br/>
+    	- Right click to place marker (info needs to be filled up)<br/>
+    	- Double click to delete marker<br/>
+    	</div>
+    	<form action="">
+    		<table>
+	    		<tr>
+		    		<td></td>
+		    		<td><h4>Information</h4></td>
+	    		</tr>
+	    		<tr>
+		    		<td>NAME: </td><td> <input type="text" id="inp_name" placeholder="Name"/></td>
+	    		</tr>
+	    		<tr>
+					<td>ADDRESS: </td><td> <input type="text" id="inp_address" placeholder="Address"/></td>
+	    		</tr>
+	    		<tr>
+					<td>EMAIL: </td><td> <input type="email" id="inp_email" placeholder="Email"/></td>
+	    		</tr>
+    		</table>
+
+    	</form>
+    </div>
+  </body>
+</html>
