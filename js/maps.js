@@ -26,6 +26,35 @@ function initialize() {
       handleNoGeolocation(true);
     });
   }
+
+  google.maps.event.addListener(map, "rightclick", function(event){
+
+      var newpos = new google.maps.LatLng(event.latLng.lat(),
+                 event.latLng.lng());
+      var newmarker = new google.maps.Marker({
+        position: newpos,
+        map: map,
+        title: 'Your crush!'
+      });
+
+      var contentString = '';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+      });
+
+      google.maps.event.addListener(newmarker, 'mouseover', function(){
+          infowindow.open(map,newmarker);
+      });
+      google.maps.event.addListener(newmarker, 'mouseout', function(){
+          infowindow.close();
+      });
+
+      google.maps.event.addListener(newmarker, 'dblclick', function(){
+        newmarker.setMap(null);
+      });
+
+  });
+
 }
 
 
